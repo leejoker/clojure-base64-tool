@@ -9,31 +9,36 @@
 (def default-output-file "temp.png")
 
 (defn read-file-string
+  "read string from file-path, if file-path is nil, use default-file-src"
   [file-path]
   (let [fp (if (nil? file-path) default-file-src file-path)]
     (slurp fp)))
 
 (defn byte-output-stream
+  "get the output stream by file-path, if file-path is nil, use default-output-file"
   [file-path]
   (let [fp (if (nil? file-path) default-output-file file-path)]
     (io/output-stream fp)))
 
 (defn decode
+  "decode base64 string to byte array"
   [str]
   (byte-array (.decode (Base64/getDecoder) str)))
 
 (defn write-byte-array-file
+  "write byte array to a file"
   [input ^OutputStream out]
   (with-open [os out]
     (.write os input)))
 
-(defn decode-png
+(defn decode-file
   "write base64 to file"
   [& args]
-  (let [in       (first args)
-        out       (second args)]
+  (let [in  (first args)
+        out (second args)]
     (write-byte-array-file (decode (read-file-string in)) (byte-output-stream out))))
 
 (defn -main
+  "main funtion"
   [& args]
-  (decode-png args))
+  (decode-file args))

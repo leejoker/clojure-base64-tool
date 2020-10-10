@@ -2,6 +2,13 @@
 
 A tool transfer base64 string to png, write with clojure
 
+# TODO
+
+- [ ]  add config file
+    * default input file path
+    * default output file path
+- [ ] add gui to make it more frendly
+
 ## License
 
 Copyright © 2020 leejoker
