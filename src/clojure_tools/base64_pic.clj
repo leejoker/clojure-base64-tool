@@ -1,4 +1,4 @@
-(ns base64-tool.core
+(ns clojure-tools.base64-pic
   (:gen-class)
   (:require [clojure.java.io :as io])
   (:import
@@ -37,8 +37,3 @@
   (let [in  (first args)
         out (second args)]
     (write-byte-array-file (decode (read-file-string in)) (byte-output-stream out))))
-
-(defn -main
-  "main funtion"
-  [& args]
-  (decode-file args))
